@@ -6,69 +6,40 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by IS96266 on 31.10.2016 - 15:00.
  */
-public class Beacon {
+public class GiftConnection {
 
-    /**
-     *
-     * (Required)
-     *
-     */
+    private double BeaconDistance;
+    public GiftConnection(String beaconID, Double beaconDistance)
+    {
+        this.setBeaconid(beaconID);
+        this.setBeaconDistance(beaconDistance);
+    }
     @SerializedName("_id")
     @Expose
     private String id;
-    /**
-     *
-     * (Required)
-     *
-     */
     @SerializedName("_rev")
     @Expose
     private String rev;
-    /**
-     *
-     * (Required)
-     *
-     */
     @SerializedName("name")
     @Expose
     private String name;
-    /**
-     *
-     * (Required)
-     *
-     */
     @SerializedName("surname")
     @Expose
     private String surname;
-    /**
-     *
-     * (Required)
-     *
-     */
     @SerializedName("tckn")
     @Expose
     private String tckn;
-    /**
-     *
-     * (Required)
-     *
-     */
     @SerializedName("beaconid")
     @Expose
     private String beaconid;
-
-    /**
-     *
-     * (Required)
-     *
-     */
     @SerializedName("photo")
     @Expose
-    private byte[] photo;
+    private String photo;
+    @SerializedName("eventtype")
+    @Expose
+    private String eventtype;
 
     /**
-     *
-     * (Required)
      *
      * @return
      * The id
@@ -79,8 +50,6 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @param id
      * The _id
      */
@@ -89,8 +58,6 @@ public class Beacon {
     }
 
     /**
-     *
-     * (Required)
      *
      * @return
      * The rev
@@ -101,8 +68,6 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @param rev
      * The _rev
      */
@@ -111,8 +76,6 @@ public class Beacon {
     }
 
     /**
-     *
-     * (Required)
      *
      * @return
      * The name
@@ -123,8 +86,6 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @param name
      * The name
      */
@@ -133,8 +94,6 @@ public class Beacon {
     }
 
     /**
-     *
-     * (Required)
      *
      * @return
      * The surname
@@ -145,8 +104,6 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @param surname
      * The surname
      */
@@ -155,8 +112,6 @@ public class Beacon {
     }
 
     /**
-     *
-     * (Required)
      *
      * @return
      * The tckn
@@ -167,8 +122,6 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @param tckn
      * The tckn
      */
@@ -177,8 +130,6 @@ public class Beacon {
     }
 
     /**
-     *
-     * (Required)
      *
      * @return
      * The beaconid
@@ -189,8 +140,6 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @param beaconid
      * The beaconid
      */
@@ -200,23 +149,45 @@ public class Beacon {
 
     /**
      *
-     * (Required)
-     *
      * @return
      * The photo
      */
-    public byte[] getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
     /**
      *
-     * (Required)
-     *
      * @param photo
      * The photo
      */
-    public void setPhoto(byte[] photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    /**
+     *
+     * @return
+     * The eventtype
+     */
+    public String getEventtype() {
+        return eventtype;
+    }
+
+    /**
+     *
+     * @param eventtype
+     * The eventtype
+     */
+    public void setEventtype(String eventtype) {
+        this.eventtype = eventtype;
+    }
+
+    public double getBeaconDistance() {
+        return BeaconDistance;
+    }
+
+    public void setBeaconDistance(double beaconDistance) {
+        BeaconDistance = beaconDistance;
     }
 }
