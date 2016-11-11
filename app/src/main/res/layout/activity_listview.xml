@@ -1,61 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="20dp"
-    android:paddingTop="20dp"
-    android:paddingRight="20dp"
-    android:paddingBottom="60dp">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView android:id="@+id/txtRecepientName"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:textStyle="bold"
-        android:textSize="22dp"
-        android:textColor="#000000"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:id="@+id/txtEventDescription"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:textStyle="bold"
-            android:textSize="22dp"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
-
-        <TextView
-            android:id="@+id/txtDistance"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:textStyle="bold"
-            android:textSize="22dp"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp" />
-    </LinearLayout>
-
-    <ImageView android:id="@+id/imgRecepient"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"> <ImageView android:id="@+id/imgRecepient"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"> <TextView
+            android:id="@+id/txtRecepientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="22dp"
+            android:textColor="#000000"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+            <TextView
+                android:id="@+id/txtEventDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/txtDistance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:textColor="#000000"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"

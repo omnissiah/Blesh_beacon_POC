@@ -62,13 +62,9 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                     txtDistance.setText(String.format("%.2f", data.get(position).getBeaconDistance()) + " m");
                 }
 
+                rowView.setTag(data.get(position));
             }
-            else
-            {
-                txtRecepientName.setText("?");
-                txtEventDescription.setText("!?!");
-                txtDistance.setText("? m");
-            }
+
         }
 
         return rowView;

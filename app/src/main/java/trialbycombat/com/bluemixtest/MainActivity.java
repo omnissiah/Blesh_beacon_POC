@@ -29,6 +29,7 @@
 package trialbycombat.com.bluemixtest;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
@@ -69,7 +70,9 @@ import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
@@ -77,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     private FloatingActionButton btnStartBeaconSearch;
     private BeaconManager beaconManager;
     private FrameLayout frmBackground;
-    private ScrollView frmBeaconPage;
     private ListView beaconListView;
     List<GiftConnection> giftConnectionList;
     private boolean beaconPreviouslyAdded=false;
@@ -127,15 +129,13 @@ private ArrayAdapter beaconAdapter;
          beaconListView= (ListView) findViewById(R.id.beacon_list);
         btnStartBeaconSearch = (FloatingActionButton) findViewById(R.id.btnStartBeaconSearch);
         frmBackground = (FrameLayout) findViewById(R.id.frmBackground);
-        frmBeaconPage = (ScrollView) findViewById(R.id.frmBeaconPage);
         giftConnectionList=new ArrayList<>();
         btnStartBeaconSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleVisibility(frmBackground);
-                toggleVisibility(frmBeaconPage);
 
-                if (frmBeaconPage.getVisibility()==View.VISIBLE) {
+                if (frmBackground.getVisibility()==View.GONE) {
                     btnStartBeaconSearch.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
                     beaconManager.bind(mainAct);
                 }
@@ -156,7 +156,6 @@ private ArrayAdapter beaconAdapter;
                 beaconListView.setAdapter(beaconAdapter);
             }
         });
-
     }
 
     private void toggleVisibility(final ViewGroup layout)
@@ -238,10 +237,9 @@ private ArrayAdapter beaconAdapter;
                 beaconInsider = beacons;
                 giftConnectionList.clear();
 
-                for (int i=0;i<beacons.size();i++)
+                for (Beacon beacon:beaconInsider)
                 {
                     beaconPreviouslyAdded=false;
-                    Beacon beacon=beaconInsider.iterator().next();
                     if(beacon!=null)
                     {
                         GiftConnection giftConnection=null;
@@ -278,6 +276,12 @@ private ArrayAdapter beaconAdapter;
                     }
                 }
                 setListContent();
+                //slow down beacon search- non UI thread
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (Exception ex) {
+
+                }
             }
         });
 
