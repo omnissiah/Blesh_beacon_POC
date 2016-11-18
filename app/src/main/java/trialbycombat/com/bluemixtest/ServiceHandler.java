@@ -5,10 +5,24 @@ import com.google.gson.Gson;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by IS96266 on 7.11.2016 - 14:35.
@@ -59,5 +73,45 @@ public class ServiceHandler {
             return null;
         }
         return null;
+    }
+
+    public static void PostPayment(PaymentData paymentInfo) {
+
+        try {
+            URL url = new URL("https://appnode-red-starter.mybluemix.net/api/v1/Payment"); //Enter URL here
+            HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+            httpURLConnection.setDoOutput(true);
+            httpURLConnection.setRequestMethod("POST"); // here you are telling that it is a POST request, which can be changed into "PUT", "GET", "DELETE" etc.
+            httpURLConnection.setRequestProperty("Content-Type", "application/json"); // here you are setting the `Content-Type` for the data you are sending which is `application/json`
+            httpURLConnection.connect();
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("beaconid", paymentInfo.getBeaconid());
+            jsonObject.put("name", paymentInfo.getName());
+            jsonObject.put("surname", paymentInfo.getSurname());
+            jsonObject.put("customernumber", paymentInfo.getCustomerNumber());
+            jsonObject.put("amount", paymentInfo.getAmount());
+
+            DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
+            wr.writeBytes(jsonObject.toString());
+            wr.flush();
+            wr.close();
+
+            int responseCode=httpURLConnection.getResponseCode();
+            if (responseCode == HttpsURLConnection.HTTP_OK) {
+                String line;
+                BufferedReader br=new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                while ((line=br.readLine()) != null) {
+
+                }
+            }
+
+            } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

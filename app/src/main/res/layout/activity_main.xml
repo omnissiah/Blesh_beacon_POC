@@ -30,6 +30,8 @@
         android:background="#00ffc4"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
-        android:id="@+id/frmBackground"></FrameLayout>
+        android:id="@+id/frmBackground">
+
+    </FrameLayout>
 
 </RelativeLayout>

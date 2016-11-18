@@ -1,12 +1,15 @@
 package trialbycombat.com.bluemixtest;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
  * Created by IS96266 on 31.10.2016 - 15:00.
  */
-public class GiftConnection {
+public class GiftConnection implements Parcelable{
 
     private double BeaconDistance;
     public GiftConnection(String beaconID, Double beaconDistance)
@@ -190,4 +193,46 @@ public class GiftConnection {
     public void setBeaconDistance(double beaconDistance) {
         BeaconDistance = beaconDistance;
     }
+    protected GiftConnection(Parcel in) {
+        BeaconDistance = in.readDouble();
+        id = in.readString();
+        rev = in.readString();
+        name = in.readString();
+        surname = in.readString();
+        tckn = in.readString();
+        beaconid = in.readString();
+        photo = in.readString();
+        eventtype = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeDouble(BeaconDistance);
+        dest.writeString(id);
+        dest.writeString(rev);
+        dest.writeString(name);
+        dest.writeString(surname);
+        dest.writeString(tckn);
+        dest.writeString(beaconid);
+        dest.writeString(photo);
+        dest.writeString(eventtype);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<GiftConnection> CREATOR = new Parcelable.Creator<GiftConnection>() {
+        @Override
+        public GiftConnection createFromParcel(Parcel in) {
+            return new GiftConnection(in);
+        }
+
+        @Override
+        public GiftConnection[] newArray(int size) {
+            return new GiftConnection[size];
+        }
+    };
 }
