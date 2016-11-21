@@ -8,6 +8,13 @@
     <!-- TODO: Update blank fragment layout -->
 
     <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lytChooseAccount"
+        android:visibility="gone"
+        android:background="@drawable/iscep_choose_branch"></FrameLayout>
+
+    <FrameLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/lytFinishedPayment"
@@ -22,65 +29,140 @@
     </FrameLayout>
 
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/lytFinalPaymentInfo">
+        android:id="@+id/lytFinalPaymentInfo"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/iscep_para_aktarma_header"
+            android:cropToPadding="false"
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true" />
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView"
-                android:layout_gravity="center_horizontal|top" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Medium Text"
-                android:id="@+id/textView2"
-                android:layout_gravity="center_horizontal|top" />
+            android:layout_height="wrap_content"
+            android:id="@+id/lytAccSelection"
+            android:layout_below="@+id/imageView">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:id="@+id/imgAccountSelection"
+                android:src="@drawable/iscep_hesap_bilgisi"
+                android:scaleType="fitXY" />
 
 
         </LinearLayout>
-
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lytAccSelection"
+            android:id="@+id/lytPaymentData"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Large Text"
-                android:id="@+id/textView3"
-                android:layout_gravity="center_horizontal|top" />
+                android:text="txtRecepient"
+                android:id="@+id/txtPaymentRecepientName"
+                android:layout_gravity="left|center_horizontal"
+                android:textSize="21dp"
+                android:textColor="#4a84ac"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp" />
 
-            <ExpandableListView
-                android:layout_width="wrap_content"
-                android:layout_height="258dp"
-                android:id="@+id/expandableListView"
-                android:layout_gravity="center_horizontal|top"
-                android:clickable="true"
-                android:choiceMode="singleChoice" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="txtEvent Description"
+                android:id="@+id/txtPayemntEventDescription"
+                android:layout_gravity="left|center_horizontal"
+                android:textSize="21dp"
+                android:textColor="#384145"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingTop="10dp" />
+
+            <RelativeLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="21dp"
+                    android:textColor="#384145"
+                    android:layout_gravity="left"
+                    android:text="Tutar"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_toLeftOf="@+id/txtPaymentAmount"
+                    android:paddingRight="20dp"
+                    android:layout_alignBottom="@+id/txtPaymentAmount" />
+
+                <EditText
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/txtPaymentAmount"
+                    android:textColor="#e76f0e"
+                    android:textStyle="bold"
+                    android:textSize="21dp"
+                    android:enabled="true"
+                    android:layout_alignTop="@+id/textView"
+                    android:layout_toLeftOf="@+id/textView" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="21dp"
+                    android:textColor="#e76f0e"
+                    android:layout_gravity="left"
+                    android:text="TL"
+                    android:textStyle="bold"
+                    android:paddingRight="20dp"
+                    android:id="@+id/textView"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true" />
+
+            </RelativeLayout>
+
 
         </LinearLayout>
+
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Button"
+            android:text="Gönder"
             android:id="@+id/btnFinalizePayment"
-            android:layout_gravity="right|bottom" />
-    </LinearLayout>
+            android:layout_gravity="bottom|right"
+            android:background="#015697"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
 
 
 </LinearLayout>

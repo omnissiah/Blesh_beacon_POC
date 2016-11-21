@@ -68,6 +68,7 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -137,6 +138,7 @@ private ArrayAdapter beaconAdapter;
 
                 if (frmBackground.getVisibility()==View.GONE) {
                     btnStartBeaconSearch.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    giftConnectionList.clear();
                     beaconManager.bind(mainAct);
                 }
                 else {
@@ -235,7 +237,6 @@ private ArrayAdapter beaconAdapter;
             @Override
             public void didRangeBeaconsInRegion(Collection<org.altbeacon.beacon.Beacon> beacons, Region region) {
                 beaconInsider = beacons;
-                giftConnectionList.clear();
 
                 for (Beacon beacon:beaconInsider)
                 {
@@ -247,10 +248,11 @@ private ArrayAdapter beaconAdapter;
                             giftConnection = ServiceHandler.GetBeacon(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase());
                             if (giftConnection != null) {
                                 giftConnection.setBeaconDistance(beacon.getDistance());
+                                giftConnection.setLastContactedTime(System.currentTimeMillis());
                                 giftConnectionList.add(giftConnection);
                             }
                             else
-                                giftConnectionList.add(new GiftConnection(beacon.getIdentifier(0).toString().replace("-","").toUpperCase(), beacon.getDistance()));
+                                giftConnectionList.add(new GiftConnection(beacon.getIdentifier(0).toString().replace("-","").toUpperCase(), beacon.getDistance(),System.currentTimeMillis()));
                         }
                         else
                         {
@@ -258,8 +260,16 @@ private ArrayAdapter beaconAdapter;
                             {
                                 if(giftConnectionList.get(j).getBeaconid().equals(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase())) {
                                     beaconPreviouslyAdded = true;
-                                    giftConnectionList.get(j).setBeaconDistance(beacon.getDistance());
-                                    break;
+
+                                    if((System.currentTimeMillis()-giftConnectionList.get(j).getLastContactedTime())/1000<30) {
+                                        giftConnectionList.get(j).setBeaconDistance(beacon.getDistance());
+                                        giftConnectionList.get(j).setLastContactedTime(System.currentTimeMillis());
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        giftConnectionList.remove(j);
+                                    }
                                 }
                             }
 
@@ -267,10 +277,11 @@ private ArrayAdapter beaconAdapter;
                                 giftConnection = ServiceHandler.GetBeacon(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase());
                                 if (giftConnection != null) {
                                     giftConnection.setBeaconDistance(beacon.getDistance());
+                                    giftConnection.setLastContactedTime(System.currentTimeMillis());
                                     giftConnectionList.add(giftConnection);
                                 }
                                 else
-                                    giftConnectionList.add(new GiftConnection(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase(),beacon.getDistance()));
+                                    giftConnectionList.add(new GiftConnection(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase(),beacon.getDistance(),System.currentTimeMillis()));
                             }
                         }
                     }

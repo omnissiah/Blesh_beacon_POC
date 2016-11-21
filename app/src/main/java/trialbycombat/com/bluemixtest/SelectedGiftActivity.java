@@ -1,5 +1,6 @@
 package trialbycombat.com.bluemixtest;
 
+import android.app.ActionBar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
@@ -19,6 +20,9 @@ public class SelectedGiftActivity extends AppCompatActivity {
         Intent intent = getIntent();
         this.selectedGift = (GiftConnection)intent.getExtras().getParcelable("chosenGiftConnection");
         setContentView(R.layout.activity_selected_gift);
+
+        //ActionBar bar = getActionBar();
+       // bar.setTitle(selectedGift.getName()+" Bebek");
 
         // Create new fragment and transaction
         Fragment selectedGiftActivityFragment = new SelectedGiftActivityFragment();

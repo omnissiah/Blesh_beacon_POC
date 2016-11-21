@@ -73,8 +73,9 @@ public class ServiceHandler {
 
 
             data = gson.fromJson(jsonString, GiftConnection[].class);
-            if (data != null)
+            if (data != null) {
                 return data[0];
+            }
 
 
         } catch (Exception e) {

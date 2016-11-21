@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -49,8 +50,8 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 rowView = inflater.inflate(layoutResourceId, parent, false);
 
-                LinearLayout layoutListItemMain = (LinearLayout) rowView.findViewById(R.id.layoutListItemMain);
-                layoutListItemMain.setOnClickListener(new View.OnClickListener() {
+                LinearLayout lytListItem = (LinearLayout) rowView.findViewById(R.id.lytListItem);
+                lytListItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         Intent myIntent = new Intent(context, SelectedGiftActivity.class);
@@ -61,16 +62,54 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                 TextView txtRecepientName = (TextView) rowView.findViewById(R.id.txtRecepientName);
                 TextView txtEventDescription = (TextView) rowView.findViewById(R.id.txtEventDescription);
                 TextView txtDistance = (TextView) rowView.findViewById(R.id.txtDistance);
-                ImageView imgRecepient = (ImageView) rowView.findViewById(R.id.imgRecepient);
+                TextView txtLastContacted = (TextView) rowView.findViewById(R.id.txtLastContacted);
 
                 if (con != null) {
                     if (con.getName() != null) {
-                        txtRecepientName.setText(con.getName() + con.getSurname());
-                        txtEventDescription.setText(con.getName());
+                        if(con.getEventtype()!=null)
+                        {
+                            switch(con.getEventtype())
+                            {
+                                case "1":
+                                lytListItem.setBackgroundResource(R.drawable.baby_girl_bg);
+                                    txtRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#efb8df"));
+                                    txtDistance.setTextColor(Color.parseColor("#efb8df"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#efb8df"));
+                                    break;
+                                case "2":
+                                    lytListItem.setBackgroundResource(R.drawable.baby_boy_bg);
+                                    txtRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#30d0f2"));
+                                    txtDistance.setTextColor(Color.parseColor("#30d0f2"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#30d0f2"));
+                                    break;
+                                case "3":
+                                    lytListItem.setBackgroundResource(R.drawable.just_married_bg);
+                                    txtRecepientName.setTextColor(Color.parseColor("#000059"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#ffa500"));
+                                    txtDistance.setTextColor(Color.parseColor("#ffa500"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#ffa500"));
+                                    break;
+                                default:
+                                    lytListItem.setBackgroundResource(R.drawable.baby_girl_bg);
+                                    txtRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#efb8df"));
+                                    txtDistance.setTextColor(Color.parseColor("#efb8df"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#efb8df"));
+                                    break;
+                            }
+                        }
+
+                        txtLastContacted.setText((System.currentTimeMillis()- con.getLastContactedTime())/1000+" sn");
+                        txtRecepientName.setText(con.getName() + " "+con.getSurname());
+
+                        //TODO fix with proper event data
+                        txtEventDescription.setText("Hoşgeldin "+con.getName()+" bebek");
+
                         txtDistance.setText(String.format("%.2f", con.getBeaconDistance()) + " m");
-                        Bitmap bMap = BitmapFactory.decodeByteArray(con.getPhoto().getBytes(), 0, con.getPhoto().length());
-                        imgRecepient.setImageBitmap(bMap);
                     } else {
+                        //TODO decide if non existant beaconID's will show in list and if so how?
                         txtRecepientName.setText(con.getBeaconid());
                         txtEventDescription.setText("!?!");
                         txtDistance.setText(String.format("%.2f", con.getBeaconDistance()) + " m");

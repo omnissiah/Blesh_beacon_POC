@@ -6,16 +6,30 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by IS96266 on 31.10.2016 - 15:00.
  */
 public class GiftConnection implements Parcelable{
 
     private double BeaconDistance;
-    public GiftConnection(String beaconID, Double beaconDistance)
+
+
+    public Long getLastContactedTime() {
+        return LastContactedTime;
+    }
+
+    public void setLastContactedTime(Long lastContactedTime) {
+        LastContactedTime = lastContactedTime;
+    }
+
+    private Long LastContactedTime;
+    public GiftConnection(String beaconID, Double beaconDistance,Long lastContactedTime)
     {
         this.setBeaconid(beaconID);
         this.setBeaconDistance(beaconDistance);
+        this.setLastContactedTime(lastContactedTime);
     }
     @SerializedName("_id")
     @Expose

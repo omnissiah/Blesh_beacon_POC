@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     tools:context="trialbycombat.com.bluemixtest.MainActivity">
 
     <android.support.design.widget.FloatingActionButton
@@ -19,19 +15,36 @@
 
         <ListView
             android:id="@+id/beacon_list"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignWithParentIfMissing="false">
         </ListView>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:background="#00ffc4"
+        android:visibility="visible"
+        android:background="#e8edec"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:id="@+id/frmBackground">
-
+        <TextView
+            android:layout_width="247dp"
+            android:layout_height="54dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Aramaya Başla"
+            android:id="@+id/textView4"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textSize="32dp" />
     </FrameLayout>
+
+
 
 </RelativeLayout>

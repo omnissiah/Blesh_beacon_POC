@@ -16,7 +16,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,6 +31,8 @@ private GiftConnection selectedGift;
 
     private TextView txtSelectedGiftDescription,txtSelectedGiftRecepientName;
     private ImageView imgSelectedGiftRecepient;
+    private RelativeLayout lytSelectedGift;
+
     public SelectedGiftActivityFragment() {
     }
 
@@ -49,11 +53,36 @@ private GiftConnection selectedGift;
         txtSelectedGiftDescription= (TextView)view.findViewById(R.id.txtSelectedGiftDescription);
         txtSelectedGiftRecepientName= (TextView)view.findViewById(R.id.txtSelectedGiftRecepientName);
         imgSelectedGiftRecepient= (ImageView)view.findViewById(R.id.imgSelectedGiftRecepient);
+        lytSelectedGift= (RelativeLayout)view.findViewById(R.id.lytSelectedGift);
 
-        txtSelectedGiftDescription.setText(selectedGift.getName());
-        txtSelectedGiftRecepientName.setText(selectedGift.getName());
+        txtSelectedGiftDescription.setText("Hoşgeldin \n"+selectedGift.getName()+" Bebek");
+        txtSelectedGiftRecepientName.setText(selectedGift.getName()+" "+selectedGift.getSurname());
         Bitmap bMap = BitmapFactory.decodeByteArray(selectedGift.getPhoto().getBytes(), 0, selectedGift.getPhoto().length());
         imgSelectedGiftRecepient.setImageBitmap(bMap);
+
+        switch(selectedGift.getEventtype())
+        {
+            case "1":
+                lytSelectedGift.setBackgroundResource(R.drawable.baby_girl_bg2);
+                txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                txtSelectedGiftDescription.setTextColor(Color.parseColor("#efb8df"));
+                break;
+            case "2":
+                lytSelectedGift.setBackgroundResource(R.drawable.baby_boy_bg);
+                txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                txtSelectedGiftDescription.setTextColor(Color.parseColor("#30d0f2"));
+                break;
+            case "3":
+                lytSelectedGift.setBackgroundResource(R.drawable.just_married_bg);
+                txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#000059"));
+                txtSelectedGiftDescription.setTextColor(Color.parseColor("#ffa500"));
+                break;
+            default:
+                lytSelectedGift.setBackgroundResource(R.drawable.baby_girl_bg2);
+                txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                txtSelectedGiftDescription.setTextColor(Color.parseColor("#efb8df"));
+                break;
+        }
 
         btnStartGiftSending= (Button) view.findViewById(R.id.btnStartGiftSending);
         btnStartGiftSending.setOnClickListener(new View.OnClickListener() {
