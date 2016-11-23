@@ -76,11 +76,10 @@
                 android:id="@+id/txtPaymentRecepientName"
                 android:layout_gravity="left|center_horizontal"
                 android:textSize="21dp"
-                android:textColor="#4a84ac"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp" />
+                android:textColor="#1c669c"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="3dp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -90,14 +89,14 @@
                 android:layout_gravity="left|center_horizontal"
                 android:textSize="21dp"
                 android:textColor="#384145"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingTop="10dp" />
+                android:paddingTop="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
 
             <RelativeLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="39dp"
+                android:layout_height="60dp"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
                 android:layout_marginTop="20dp">
@@ -113,7 +112,8 @@
                     android:layout_alignParentBottom="false"
                     android:layout_toLeftOf="@+id/txtPaymentAmount"
                     android:paddingRight="20dp"
-                    android:layout_alignBottom="@+id/txtPaymentAmount" />
+                    android:layout_alignBottom="@+id/txtPaymentAmount"
+                    android:layout_alignParentTop="true" />
 
                 <EditText
                     android:layout_width="60dp"
@@ -125,7 +125,6 @@
                     android:textStyle="bold"
                     android:textSize="21dp"
                     android:enabled="true"
-                    android:layout_alignTop="@+id/textView"
                     android:layout_toLeftOf="@+id/textView" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -134,12 +133,13 @@
                     android:textColor="#e76f0e"
                     android:layout_gravity="left"
                     android:text="TL"
-                    android:textStyle="bold"
                     android:paddingRight="20dp"
                     android:id="@+id/textView"
-                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentBottom="false"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentStart="false"
+                    android:layout_alignParentTop="false" />
 
             </RelativeLayout>
 

@@ -75,7 +75,7 @@ private TextView txtFinalMessage;
         currentGift=((PaymentActivity)getActivity()).GetSelectedGift();
 
         txtPaymentRecepientName.setText(currentGift.getName()+" "+currentGift.getSurname());
-        txtPayemntEventDescription.setText("Hoşgeldin "+currentGift.getName()+" bebek");
+        txtPayemntEventDescription.setText(currentGift.getDescription());
 
         btnFinalizePayment= (Button)v.findViewById(R.id.btnFinalizePayment);
         btnFinalizePayment.setOnClickListener(new View.OnClickListener() {

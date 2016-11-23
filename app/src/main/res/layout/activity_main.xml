@@ -23,17 +23,19 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentBottom="false"
             android:layout_alignParentRight="false"
-            android:layout_alignWithParentIfMissing="false">
+            android:layout_alignWithParentIfMissing="false"
+            android:clickable="true"
+            android:background="@drawable/ripple_effect">
         </ListView>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="visible"
-        android:background="#e8edec"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:id="@+id/frmBackground">
+
         <TextView
             android:layout_width="247dp"
             android:layout_height="54dp"

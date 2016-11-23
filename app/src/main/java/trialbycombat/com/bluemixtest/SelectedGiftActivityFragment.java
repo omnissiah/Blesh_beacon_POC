@@ -10,6 +10,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,10 +56,21 @@ private GiftConnection selectedGift;
         imgSelectedGiftRecepient= (ImageView)view.findViewById(R.id.imgSelectedGiftRecepient);
         lytSelectedGift= (RelativeLayout)view.findViewById(R.id.lytSelectedGift);
 
-        txtSelectedGiftDescription.setText("Hoşgeldin \n"+selectedGift.getName()+" Bebek");
+        txtSelectedGiftDescription.setText(selectedGift.getDescription());
         txtSelectedGiftRecepientName.setText(selectedGift.getName()+" "+selectedGift.getSurname());
-        Bitmap bMap = BitmapFactory.decodeByteArray(selectedGift.getPhoto().getBytes(), 0, selectedGift.getPhoto().length());
-        imgSelectedGiftRecepient.setImageBitmap(bMap);
+
+
+        try {
+            byte[] decodedByte = Base64.decode(selectedGift.getPhoto(), Base64.DEFAULT);  //convert to base64
+            Bitmap bMap = BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
+            imgSelectedGiftRecepient.setImageBitmap(bMap);
+            imgSelectedGiftRecepient.setVisibility(View.VISIBLE);
+        }catch(Exception ex)
+        {
+            imgSelectedGiftRecepient.setVisibility(View.GONE);
+            System.out.println(ex.getMessage());
+        }
+
 
         switch(selectedGift.getEventtype())
         {

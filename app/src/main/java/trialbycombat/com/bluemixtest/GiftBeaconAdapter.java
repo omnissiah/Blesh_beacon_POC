@@ -105,7 +105,7 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                         txtRecepientName.setText(con.getName() + " "+con.getSurname());
 
                         //TODO fix with proper event data
-                        txtEventDescription.setText("Hoşgeldin "+con.getName()+" bebek");
+                        txtEventDescription.setText(con.getDescription());
 
                         txtDistance.setText(String.format("%.2f", con.getBeaconDistance()) + " m");
                     } else {

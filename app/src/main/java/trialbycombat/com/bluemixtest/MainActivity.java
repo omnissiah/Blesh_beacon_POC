@@ -136,9 +136,9 @@ private ArrayAdapter beaconAdapter;
             public void onClick(View v) {
                 toggleVisibility(frmBackground);
 
+                giftConnectionList.clear();
                 if (frmBackground.getVisibility()==View.GONE) {
                     btnStartBeaconSearch.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    giftConnectionList.clear();
                     beaconManager.bind(mainAct);
                 }
                 else {

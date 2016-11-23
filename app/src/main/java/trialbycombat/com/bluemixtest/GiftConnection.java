@@ -55,7 +55,26 @@ public class GiftConnection implements Parcelable{
     @SerializedName("eventtype")
     @Expose
     private String eventtype;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    /**
+     *
+     * @return
+     * The description
+     */
+    public String getDescription() {
+        return description;
+    }
 
+    /**
+     *
+     * @param description
+     * The _description
+     */
+    public void setDescription(String description) {
+        this.description = description;
+    }
     /**
      *
      * @return
@@ -217,6 +236,7 @@ public class GiftConnection implements Parcelable{
         beaconid = in.readString();
         photo = in.readString();
         eventtype = in.readString();
+        description = in.readString();
     }
 
     @Override
@@ -235,6 +255,7 @@ public class GiftConnection implements Parcelable{
         dest.writeString(beaconid);
         dest.writeString(photo);
         dest.writeString(eventtype);
+        dest.writeString(description);
     }
 
     @SuppressWarnings("unused")
