@@ -29,6 +29,7 @@
 package trialbycombat.com.bluemixtest;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -43,7 +44,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -78,19 +82,20 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity implements BeaconConsumer {
 
     private MainActivity mainAct;
-    private FloatingActionButton btnStartBeaconSearch;
+    private Button btnStartBeaconSearch;
     private BeaconManager beaconManager;
     private FrameLayout frmBackground;
     private ListView beaconListView;
     List<GiftConnection> giftConnectionList;
     private boolean beaconPreviouslyAdded=false;
-
+private Animation pulse;
 private ArrayAdapter beaconAdapter;
 
     private static final int PERMISSION_REQUEST_COARSE_LOCATION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -126,24 +131,34 @@ private ArrayAdapter beaconAdapter;
     }
 
     private void initUIElements() {
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.pouch);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         mainAct = this;
          beaconListView= (ListView) findViewById(R.id.beacon_list);
-        btnStartBeaconSearch = (FloatingActionButton) findViewById(R.id.btnStartBeaconSearch);
+        btnStartBeaconSearch = (Button) findViewById(R.id.btnStartBeaconSearch);
         frmBackground = (FrameLayout) findViewById(R.id.frmBackground);
         giftConnectionList=new ArrayList<>();
+
+        pulse = AnimationUtils.loadAnimation(this, R.anim.pulse);
+        pulse.setRepeatCount(Animation.INFINITE);
+
         btnStartBeaconSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toggleVisibility(frmBackground);
 
-                giftConnectionList.clear();
-                if (frmBackground.getVisibility()==View.GONE) {
+                if (frmBackground.getVisibility() == View.GONE) {
                     btnStartBeaconSearch.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    giftConnectionList.clear();
                     beaconManager.bind(mainAct);
-                }
-                else {
+                    btnStartBeaconSearch.startAnimation(pulse);
+                } else {
                     btnStartBeaconSearch.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
                     beaconManager.unbind(mainAct);
+                    btnStartBeaconSearch.clearAnimation();
                 }
             }
         });

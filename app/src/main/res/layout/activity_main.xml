@@ -5,15 +5,8 @@
     android:layout_height="fill_parent"
     tools:context="trialbycombat.com.bluemixtest.MainActivity">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnStartBeaconSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true" />
 
-        <ListView
+    <ListView
             android:id="@+id/beacon_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,9 +16,7 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentBottom="false"
             android:layout_alignParentRight="false"
-            android:layout_alignWithParentIfMissing="false"
-            android:clickable="true"
-            android:background="@drawable/ripple_effect">
+            android:layout_alignWithParentIfMissing="false">
         </ListView>
 
     <FrameLayout
@@ -34,6 +25,7 @@
         android:visibility="visible"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
+        android:background="#ffffff"
         android:id="@+id/frmBackground">
 
         <TextView
@@ -44,9 +36,25 @@
             android:id="@+id/textView4"
             android:textAlignment="center"
             android:layout_gravity="center"
-            android:textSize="32dp" />
+            android:textSize="32dp"
+            android:textStyle="italic" />
     </FrameLayout>
 
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:visibility="visible"
+        android:layout_centerInParent="true"><Button
+        android:id="@+id/btnStartBeaconSearch"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="false"
+        android:background="@drawable/round_button"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true" /></RelativeLayout>
 
 
 </RelativeLayout>
