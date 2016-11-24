@@ -32,6 +32,7 @@ import android.Manifest;
 import android.app.ActionBar;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -42,6 +43,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -61,6 +64,7 @@ import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
 import org.altbeacon.beacon.BeaconParser;
+import org.altbeacon.beacon.Identifier;
 import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
@@ -131,10 +135,22 @@ private ArrayAdapter beaconAdapter;
     }
 
     private void initUIElements() {
-        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
-        actionBar.setLogo(R.drawable.pouch);
-        actionBar.setDisplayUseLogoEnabled(true);
-        actionBar.setDisplayShowHomeEnabled(true);
+        //custom toolbar
+        android.support.v7.app.ActionBar mActionBar = getSupportActionBar();
+        mActionBar.setDisplayShowHomeEnabled(false);
+        mActionBar.setDisplayShowCustomEnabled(true);
+        mActionBar.setDisplayShowTitleEnabled(false);
+        LayoutInflater mInflater = LayoutInflater.from(this);
+
+        View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
+        TextView mTitleTextView = (TextView) mCustomView.findViewById(R.id.title_text);
+        mTitleTextView.setText(getApplicationName(this));
+
+        mActionBar.setCustomView(mCustomView);
+        Toolbar parent = (Toolbar) mCustomView.getParent();
+        parent.setContentInsetsAbsolute(0, 0);
+
+        //custom toolbar end
 
         mainAct = this;
          beaconListView= (ListView) findViewById(R.id.beacon_list);
@@ -163,6 +179,19 @@ private ArrayAdapter beaconAdapter;
             }
         });
     }
+
+    private  String getApplicationName(Context context) {
+        ApplicationInfo applicationInfo = context.getApplicationInfo();
+        int stringId = applicationInfo.labelRes;
+        return stringId == 0 ? applicationInfo.nonLocalizedLabel.toString() : context.getString(stringId);
+    }
+
+    private String getBeaconHex(List<Identifier> identifiers) {
+        return identifiers.get(0).toString().replace("-", "").toUpperCase()
+                +String.format("%04X",Long.parseLong(Integer.toHexString(Integer.parseInt(identifiers.get(1).toString().toUpperCase())),16))
+                +String.format("%04X",Long.parseLong(Integer.toHexString(Integer.parseInt(identifiers.get(2).toString().toUpperCase())), 16));
+    }
+
 
     private void setListContent()
     {
@@ -260,43 +289,45 @@ private ArrayAdapter beaconAdapter;
                     {
                         GiftConnection giftConnection=null;
                         if(giftConnectionList.size()==0) {
-                            giftConnection = ServiceHandler.GetBeacon(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase());
+                            giftConnection = ServiceHandler.GetBeacon(getBeaconHex(beacon.getIdentifiers()));
                             if (giftConnection != null) {
                                 giftConnection.setBeaconDistance(beacon.getDistance());
                                 giftConnection.setLastContactedTime(System.currentTimeMillis());
                                 giftConnectionList.add(giftConnection);
                             }
                             else
-                                giftConnectionList.add(new GiftConnection(beacon.getIdentifier(0).toString().replace("-","").toUpperCase(), beacon.getDistance(),System.currentTimeMillis()));
+                                giftConnectionList.add(new GiftConnection(getBeaconHex(beacon.getIdentifiers()), beacon.getDistance(),System.currentTimeMillis()));
                         }
                         else
                         {
                             for (int j=0;j<giftConnectionList.size();j++)
                             {
-                                if(giftConnectionList.get(j).getBeaconid().equals(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase())) {
-                                    beaconPreviouslyAdded = true;
+                                //remove 30sec+ beacons from list and assume contact lost
+                                if((System.currentTimeMillis()-giftConnectionList.get(j).getLastContactedTime())/1000>30) {
+                                    giftConnectionList.remove(j);
+                                }else {
 
-                                    if((System.currentTimeMillis()-giftConnectionList.get(j).getLastContactedTime())/1000<30) {
-                                        giftConnectionList.get(j).setBeaconDistance(beacon.getDistance());
-                                        giftConnectionList.get(j).setLastContactedTime(System.currentTimeMillis());
-                                        break;
-                                    }
-                                    else
-                                    {
-                                        giftConnectionList.remove(j);
+                                    if (giftConnectionList.get(j).getBeaconid().equals(getBeaconHex(beacon.getIdentifiers()))) {
+                                        beaconPreviouslyAdded = true;
+
+                                        if ((System.currentTimeMillis() - giftConnectionList.get(j).getLastContactedTime()) / 1000 < 30) {
+                                            giftConnectionList.get(j).setBeaconDistance(beacon.getDistance());
+                                            giftConnectionList.get(j).setLastContactedTime(System.currentTimeMillis());
+                                            break;
+                                        }
                                     }
                                 }
                             }
 
                             if(!beaconPreviouslyAdded){
-                                giftConnection = ServiceHandler.GetBeacon(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase());
+                                giftConnection = ServiceHandler.GetBeacon(getBeaconHex(beacon.getIdentifiers()));
                                 if (giftConnection != null) {
                                     giftConnection.setBeaconDistance(beacon.getDistance());
                                     giftConnection.setLastContactedTime(System.currentTimeMillis());
                                     giftConnectionList.add(giftConnection);
                                 }
                                 else
-                                    giftConnectionList.add(new GiftConnection(beacon.getIdentifier(0).toString().replace("-", "").toUpperCase(),beacon.getDistance(),System.currentTimeMillis()));
+                                    giftConnectionList.add(new GiftConnection(getBeaconHex(beacon.getIdentifiers()),beacon.getDistance(), System.currentTimeMillis()));
                             }
                         }
                     }
@@ -338,10 +369,9 @@ private ArrayAdapter beaconAdapter;
         });*/
 
         try {
-            beaconManager.startMonitoringBeaconsInRegion(new Region("myMonitoringUniqueId", null, null, null));
+            beaconManager.startMonitoringBeaconsInRegion(new Region("myMonitoringUniqueId", null, Identifier.fromInt(1), null));
         } catch (RemoteException e) {    }
     }
-
 }
 
 

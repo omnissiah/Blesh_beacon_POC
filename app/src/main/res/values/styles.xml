@@ -10,7 +10,7 @@
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryPaymentDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="windowNoTitle">true</item>
     </style>
     <color name="theme_accent_color">#FF339999</color>

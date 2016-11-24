@@ -85,8 +85,8 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                                     txtLastContacted.setTextColor(Color.parseColor("#30d0f2"));
                                     break;
                                 case "3":
-                                    lytListItem.setBackgroundResource(R.drawable.just_married_bg);
-                                    txtRecepientName.setTextColor(Color.parseColor("#000059"));
+                                    lytListItem.setBackgroundResource(R.drawable.tema_bg);
+                                    txtRecepientName.setTextColor(Color.parseColor("#ffa500"));
                                     txtEventDescription.setTextColor(Color.parseColor("#ffa500"));
                                     txtDistance.setTextColor(Color.parseColor("#ffa500"));
                                     txtLastContacted.setTextColor(Color.parseColor("#ffa500"));
@@ -101,20 +101,21 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                             }
                         }
 
-                        txtLastContacted.setText((System.currentTimeMillis()- con.getLastContactedTime())/1000+" sn");
                         txtRecepientName.setText(con.getName() + " "+con.getSurname());
-
-                        //TODO fix with proper event data
                         txtEventDescription.setText(con.getDescription());
 
-                        txtDistance.setText(String.format("%.2f", con.getBeaconDistance()) + " m");
                     } else {
+                        return new View(context);
                         //TODO decide if non existant beaconID's will show in list and if so how?
-                        txtRecepientName.setText(con.getBeaconid());
-                        txtEventDescription.setText("!?!");
-                        txtDistance.setText(String.format("%.2f", con.getBeaconDistance()) + " m");
+                        //txtRecepientName.setText(con.getBeaconid().substring(0, 5) + "..." + con.getBeaconid().substring(con.getBeaconid().length() - 6, con.getBeaconid().length()-1));
+                        //txtRecepientName.setTextSize(8);
+                        //txtEventDescription.setTextSize(12);
+                        //txtEventDescription.setText("Tanımsız");
+                        //lytListItem.getLayoutParams().height = LinearLayout.LayoutParams.WRAP_CONTENT;
                     }
 
+                    txtDistance.setText(String.format("%.2f", con.getBeaconDistance()) + " m");
+                    txtLastContacted.setText((System.currentTimeMillis()- con.getLastContactedTime())/1000+" sn");
                     rowView.setTag(con);
                 }
             }

@@ -22,7 +22,7 @@
         <activity
             android:name=".SelectedGiftActivity"
             android:label="@string/title_activity_selected_gift"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PaymentActivity"
             android:label="@string/title_activity_payment"

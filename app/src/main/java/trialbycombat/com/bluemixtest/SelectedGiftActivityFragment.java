@@ -33,6 +33,7 @@ private GiftConnection selectedGift;
     private TextView txtSelectedGiftDescription,txtSelectedGiftRecepientName;
     private ImageView imgSelectedGiftRecepient;
     private RelativeLayout lytSelectedGift;
+    private Button btnStartGiftSending;
 
     public SelectedGiftActivityFragment() {
     }
@@ -47,7 +48,6 @@ private GiftConnection selectedGift;
         return v;
     }
 
-    private Button btnStartGiftSending;
 
     private void initUIElements(View view) {
         selectedGift=((SelectedGiftActivity)getActivity()).GetSelectedGift();
@@ -55,6 +55,8 @@ private GiftConnection selectedGift;
         txtSelectedGiftRecepientName= (TextView)view.findViewById(R.id.txtSelectedGiftRecepientName);
         imgSelectedGiftRecepient= (ImageView)view.findViewById(R.id.imgSelectedGiftRecepient);
         lytSelectedGift= (RelativeLayout)view.findViewById(R.id.lytSelectedGift);
+        btnStartGiftSending= (Button)view.findViewById(R.id.btnStartGiftSending);
+
 
         txtSelectedGiftDescription.setText(selectedGift.getDescription());
         txtSelectedGiftRecepientName.setText(selectedGift.getName()+" "+selectedGift.getSurname());
@@ -85,9 +87,11 @@ private GiftConnection selectedGift;
                 txtSelectedGiftDescription.setTextColor(Color.parseColor("#30d0f2"));
                 break;
             case "3":
-                lytSelectedGift.setBackgroundResource(R.drawable.just_married_bg);
-                txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#000059"));
+                lytSelectedGift.setBackgroundResource(R.drawable.tema_bg2);
+                //txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#000059"));
+                txtSelectedGiftRecepientName.setVisibility(View.GONE);
                 txtSelectedGiftDescription.setTextColor(Color.parseColor("#ffa500"));
+                btnStartGiftSending.setText("Bağış Gönder");
                 break;
             default:
                 lytSelectedGift.setBackgroundResource(R.drawable.baby_girl_bg2);

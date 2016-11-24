@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="trialbycombat.com.bluemixtest.MainActivity">
+    tools:context="trialbycombat.com.bluemixtest.MainActivity"
+    android:theme="@style/AppTheme.NoActionBar">
 
 
     <ListView
@@ -16,7 +17,8 @@
             android:layout_alignParentLeft="false"
             android:layout_alignParentBottom="false"
             android:layout_alignParentRight="false"
-            android:layout_alignWithParentIfMissing="false">
+            android:layout_alignWithParentIfMissing="false"
+        android:background="#D6F6FF">
         </ListView>
 
     <FrameLayout
