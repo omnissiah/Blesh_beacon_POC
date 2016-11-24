@@ -30,6 +30,13 @@
         android:background="#ffffff"
         android:id="@+id/frmBackground">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/imageView3"
+            android:src="@drawable/bg_potential"
+            android:scaleType="centerCrop" />
+
         <TextView
             android:layout_width="247dp"
             android:layout_height="54dp"
@@ -39,7 +46,8 @@
             android:textAlignment="center"
             android:layout_gravity="center"
             android:textSize="32dp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:textColor="#383535" />
     </FrameLayout>
 
     <RelativeLayout

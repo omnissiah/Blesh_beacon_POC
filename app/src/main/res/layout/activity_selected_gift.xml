@@ -5,6 +5,7 @@
     android:id="@+id/fragment"
     tools:context="trialbycombat.com.bluemixtest.SelectedGiftActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#D6F6FF">
 
 </FrameLayout>

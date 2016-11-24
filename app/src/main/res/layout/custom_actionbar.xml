@@ -19,13 +19,13 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#f5f5f5" />
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/imageView1"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
-        android:src="@drawable/pouch" />
+        android:src="@drawable/pouch" />-->
 
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Base64;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +91,8 @@ private GiftConnection selectedGift;
                 lytSelectedGift.setBackgroundResource(R.drawable.tema_bg2);
                 //txtSelectedGiftRecepientName.setTextColor(Color.parseColor("#000059"));
                 txtSelectedGiftRecepientName.setVisibility(View.GONE);
-                txtSelectedGiftDescription.setTextColor(Color.parseColor("#ffa500"));
+                txtSelectedGiftDescription.setTextColor(Color.parseColor("#f5f5f5"));
+                txtSelectedGiftDescription.setTextSize(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
                 btnStartGiftSending.setText("Bağış Gönder");
                 break;
             default:

@@ -72,14 +72,14 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                             {
                                 case "1":
                                 lytListItem.setBackgroundResource(R.drawable.baby_girl_bg);
-                                    txtRecepientName.setTextColor(Color.parseColor("#cccccc"));
-                                    txtEventDescription.setTextColor(Color.parseColor("#efb8df"));
-                                    txtDistance.setTextColor(Color.parseColor("#efb8df"));
-                                    txtLastContacted.setTextColor(Color.parseColor("#efb8df"));
+                                    txtRecepientName.setTextColor(Color.parseColor("#383535"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#f27acf"));
+                                    txtDistance.setTextColor(Color.parseColor("#f27acf"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#f27acf"));
                                     break;
                                 case "2":
                                     lytListItem.setBackgroundResource(R.drawable.baby_boy_bg);
-                                    txtRecepientName.setTextColor(Color.parseColor("#cccccc"));
+                                    txtRecepientName.setTextColor(Color.parseColor("#383535"));
                                     txtEventDescription.setTextColor(Color.parseColor("#30d0f2"));
                                     txtDistance.setTextColor(Color.parseColor("#30d0f2"));
                                     txtLastContacted.setTextColor(Color.parseColor("#30d0f2"));
@@ -87,16 +87,16 @@ public class GiftBeaconAdapter extends ArrayAdapter<GiftConnection> {
                                 case "3":
                                     lytListItem.setBackgroundResource(R.drawable.tema_bg);
                                     txtRecepientName.setTextColor(Color.parseColor("#ffa500"));
-                                    txtEventDescription.setTextColor(Color.parseColor("#ffa500"));
-                                    txtDistance.setTextColor(Color.parseColor("#ffa500"));
-                                    txtLastContacted.setTextColor(Color.parseColor("#ffa500"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#f2f2f2"));
+                                    txtDistance.setTextColor(Color.parseColor("#f2f2f2"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#f2f2f2"));
                                     break;
                                 default:
                                     lytListItem.setBackgroundResource(R.drawable.baby_girl_bg);
-                                    txtRecepientName.setTextColor(Color.parseColor("#cccccc"));
-                                    txtEventDescription.setTextColor(Color.parseColor("#efb8df"));
-                                    txtDistance.setTextColor(Color.parseColor("#efb8df"));
-                                    txtLastContacted.setTextColor(Color.parseColor("#efb8df"));
+                                    txtRecepientName.setTextColor(Color.parseColor("#383535"));
+                                    txtEventDescription.setTextColor(Color.parseColor("#f27acf"));
+                                    txtDistance.setTextColor(Color.parseColor("#f27acf"));
+                                    txtLastContacted.setTextColor(Color.parseColor("#f27acf"));
                                     break;
                             }
                         }
