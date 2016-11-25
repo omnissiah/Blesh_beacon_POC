@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="trialbycombat.com.bluemixtest.LandingActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imgLandingOrg"
+        android:layout_alignParentTop="false"
+        android:src="@drawable/iscep"
+        android:scaleType="fitXY"
+        android:visibility="visible" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imgExtendedApps"
+        android:layout_alignParentTop="false"
+        android:src="@drawable/iscep2"
+        android:scaleType="fitXY"
+        android:visibility="gone" />
+</RelativeLayout>

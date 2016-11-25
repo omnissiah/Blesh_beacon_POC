@@ -44,6 +44,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -140,6 +141,7 @@ private ArrayAdapter beaconAdapter;
         mActionBar.setDisplayShowHomeEnabled(false);
         mActionBar.setDisplayShowCustomEnabled(true);
         mActionBar.setDisplayShowTitleEnabled(false);
+
         LayoutInflater mInflater = LayoutInflater.from(this);
 
         View mCustomView = mInflater.inflate(R.layout.custom_actionbar, null);
@@ -304,6 +306,7 @@ private ArrayAdapter beaconAdapter;
                             {
                                 //remove 30sec+ beacons from list and assume contact lost
                                 if((System.currentTimeMillis()-giftConnectionList.get(j).getLastContactedTime())/1000>30) {
+                                    Log.d("log", "Removing timed out beacon:" + giftConnectionList.get(j).getBeaconid());
                                     giftConnectionList.remove(j);
                                 }else {
 
@@ -325,9 +328,12 @@ private ArrayAdapter beaconAdapter;
                                     giftConnection.setBeaconDistance(beacon.getDistance());
                                     giftConnection.setLastContactedTime(System.currentTimeMillis());
                                     giftConnectionList.add(giftConnection);
+                                    Log.d("log","Adding not prev listed (SERVICE) beacon:"+getBeaconHex(beacon.getIdentifiers()));
                                 }
-                                else
-                                    giftConnectionList.add(new GiftConnection(getBeaconHex(beacon.getIdentifiers()),beacon.getDistance(), System.currentTimeMillis()));
+                                else {
+                                    giftConnectionList.add(new GiftConnection(getBeaconHex(beacon.getIdentifiers()), beacon.getDistance(), System.currentTimeMillis()));
+                                    Log.d("log", "Adding not prev listed (not in service) beacon:" + getBeaconHex(beacon.getIdentifiers()));
+                                }
                             }
                         }
                     }
@@ -343,7 +349,7 @@ private ArrayAdapter beaconAdapter;
         });
 
         try {
-            beaconManager.startRangingBeaconsInRegion(new Region("myRangingUniqueId", null, null, null));
+            beaconManager.startRangingBeaconsInRegion(new Region("myRangingUniqueId", null, Identifier.fromInt(1), null));
         } catch (RemoteException e) {
         }
 

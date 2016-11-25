@@ -113,7 +113,8 @@
                     android:layout_toLeftOf="@+id/txtPaymentAmount"
                     android:paddingRight="20dp"
                     android:layout_alignBottom="@+id/txtPaymentAmount"
-                    android:layout_alignParentTop="true" />
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="10dp" />
 
                 <EditText
                     android:layout_width="60dp"
@@ -138,8 +139,8 @@
                     android:layout_alignParentBottom="false"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="false"
-                    android:layout_alignParentStart="false"
-                    android:layout_alignParentTop="false" />
+                    android:layout_alignParentTop="false"
+                    android:layout_marginTop="10dp" />
 
             </RelativeLayout>
 
@@ -157,9 +158,87 @@
             android:textColor="#ffffff"
             android:textSize="18dp"
             android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true" />
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true" />
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:layout_below="@+id/lytPaymentData">
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lytAdd5btn"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@android:color/transparent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="5"
+                    android:elevation="16dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="false"
+                android:id="@+id/lytAdd10btn"
+                android:layout_centerHorizontal="true">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@android:color/transparent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="10"
+                    android:elevation="16dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="false"
+                android:id="@+id/lytAdd20btn"
+                android:layout_marginRight="20dp">
+
+                <android.support.design.widget.FloatingActionButton
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@android:color/transparent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="20"
+                    android:elevation="16dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="25dp" />
+            </FrameLayout>
+        </RelativeLayout>
+
+
 
 
     </RelativeLayout>

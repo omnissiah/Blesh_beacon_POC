@@ -4,10 +4,12 @@ package trialbycombat.com.bluemixtest;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,8 +21,9 @@ public class PaymentFragment extends Fragment {
 
 private Button btnFinalizePayment;
     private RelativeLayout lytFinalPaymentInfo;
-    private FrameLayout lytFinishedPayment,lytChooseAccount;
-    private TextView txtPayemntEventDescription,txtPaymentAmount,txtPaymentRecepientName;
+    private FrameLayout lytFinishedPayment,lytChooseAccount,lytAdd5btn,lytAdd10btn,lytAdd20btn;
+    private TextView txtPayemntEventDescription,txtPaymentRecepientName;
+    private EditText txtPaymentAmount;
     private ImageView imgAccountSelection;
 
 private TextView txtFinalMessage;
@@ -49,9 +52,37 @@ private TextView txtFinalMessage;
         View v= inflater.inflate(R.layout.fragment_payment, container, false);
         lytFinalPaymentInfo= (RelativeLayout)v.findViewById(R.id.lytFinalPaymentInfo);
         lytFinishedPayment= (FrameLayout)v.findViewById(R.id.lytFinishedPayment);
+        txtPaymentAmount= (EditText)v.findViewById(R.id.txtPaymentAmount);
+
+        lytAdd5btn= (FrameLayout)v.findViewById(R.id.lytAdd5btn);
+        lytAdd5btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("log","5 added");
+                txtPaymentAmount.setText("" + (Integer.parseInt((txtPaymentAmount.getText().toString().length() > 0) ? txtPaymentAmount.getText().toString() : "0") + 5), TextView.BufferType.EDITABLE);
+            }
+        });
+
+        lytAdd10btn= (FrameLayout)v.findViewById(R.id.lytAdd10btn);
+        lytAdd10btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("log","10 added");
+                txtPaymentAmount.setText("" + (Integer.parseInt((txtPaymentAmount.getText().toString().length() > 0) ? txtPaymentAmount.getText().toString() : "0") + 10), TextView.BufferType.EDITABLE);
+            }
+        });
+
+        lytAdd20btn= (FrameLayout)v.findViewById(R.id.lytAdd20btn);
+        lytAdd20btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("log","20 added");
+                txtPaymentAmount.setText("" + (Integer.parseInt((txtPaymentAmount.getText().toString().length() > 0) ? txtPaymentAmount.getText().toString() : "0") + 20), TextView.BufferType.EDITABLE);
+            }
+        });
+
         txtFinalMessage= (TextView)v.findViewById(R.id.txtFinalMessage);
         txtPayemntEventDescription= (TextView)v.findViewById(R.id.txtPayemntEventDescription);
-        txtPaymentAmount= (TextView)v.findViewById(R.id.txtPaymentAmount);
         txtPaymentRecepientName= (TextView)v.findViewById(R.id.txtPaymentRecepientName);
 
         lytChooseAccount= (FrameLayout)v.findViewById(R.id.lytChooseAccount);
